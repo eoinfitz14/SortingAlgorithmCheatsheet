@@ -21,13 +21,13 @@ public class SortingAlgorithms {
 
   /**
    * PARTITION part of QUICKSORT
-   * @param arr => 
-   * @param low
-   * @param high
+   * @param arr => initial array
+   * @param low => low index
+   * @param high => highest index
    * @return
    */
   int partition(int arr[], int low, int high) { 
-    int pivot = arr[high];  
+    int pivot = arr[high]; // taking the high value to be pivot but there are better ways to choose the pivot!!!!
     int i = (low-1); // index of smaller element 
     for (int j=low; j<high; j++) 
     { 
