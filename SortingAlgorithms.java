@@ -18,77 +18,92 @@ public class SortingAlgorithms {
         array[j + 1] = curr; // second part of swap
     }
   }
+  
 
   /**
-   * PARTITION part of QUICKSORT
-   * @param arr => initial array
-   * @param low => low index
-   * @param high => highest index
-   * @return
+   * Function to call quicksort using simple array
+   * Could leave out but for sake of usability we'll use this
+   * @param array
    */
-  int partition(int arr[], int low, int high) { 
-    int pivot = arr[high]; // taking the high value to be pivot but there are better ways to choose the pivot!!!!
-    int i = (low-1); // index of smaller element 
-    for (int j=low; j<high; j++) 
-    { 
-        // If current element is smaller than the pivot 
-        if (arr[j] < pivot) 
-        { 
-            i++; 
+  void quickSort(int[] array) {
+    quickSort(array, 0, array.length - 1);
+  }
 
-            // swap arr[i] and arr[j] 
-            int temp = arr[i]; 
-            arr[i] = arr[j]; 
-            arr[j] = temp; 
-        } 
-    } 
+  /**
+   * Actual QuickSort (recursive) function 
+   * From Gayle Laakmann McDowell on Hackerrank
+   * @param array
+   * @param left
+   * @param right
+   */
+  void quickSort(int[] array, int left, int right){
+    if(left >= right){ // we don't need to do anything in this case so return
+      return;
+    }
+    int index = partition(array, left, right); // get dividing point between left and right
+    quickSort(array, left, index-1); // sort left side
+    quickSort(array, index, right);  // sort right side
+  }
 
-    // swap arr[i+1] and arr[high] (or pivot) 
-    int temp = arr[i+1]; 
-    arr[i+1] = arr[high]; 
-    arr[high] = temp; 
+  int partition(int[] array, int left, int right){
+    int pivot = array[(left+right)/2]; // median as pivot method
+    while(left <= right){ // while the left index and right index have not crossed paths
+      while(array[left] < pivot) { // while the element is in the right place compared to the pivot 
+        left++;
+      }
 
-    return i+1; 
-  } 
-  
-  /* The main function that implements QuickSort() 
-      arr[] --> Array to be sorted, 
-      low  --> Starting index, 
-      high  --> Ending index */
-  void quickSort(int arr[], int low, int high) { 
-    if (low < high) 
-    { 
-        /* pi is partitioning index, arr[pi] is  
-          now at right place */
-        int pi = partition(arr, low, high); 
+      while(array[right] > pivot){
+        right--;
+      }
 
-        // Recursively sort elements before 
-        // partition and after partition 
-        quickSort(arr, low, pi-1); 
-        quickSort(arr, pi+1, high); 
-    } 
-  } 
+      // if left is less than right they need to be swapped. We check if it's <= 
+      // as if they are equal the left and right pointers still need to be incremented so that the correct partition is returned
+      if(left <= right){ 
+        swap(array, left, right);
+        left++;
+        right--;
+      }
+    }
+    return left;
+  }
+
+  int[] swap(int[] array, int left, int right){
+    int temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
+
+    return array;
+  }
+
 
   /**
    * MAIN
    * @param args
    */
   public static void main(String[] args){
-    int[] array = {4, 5, 2, 7, 0, 1, 3, 7};
+    int[] array = {4, 5, 2, 7, 0, 1, 3, 7, 5, 2, 35, 233, 1,2 ,2,4,3,2,5,6,6,8,6,9,3,2,5,6,7,8,9,84,2,6,7};
+
     System.out.println("Printing initial array: "); 
+
     for (int element: array) {
       System.out.print(element + " "); 
     }
+
     SortingAlgorithms algorithm = new SortingAlgorithms();
 
-    System.out.println("");
+    System.out.println();
 
-    algorithm.insertionSort(array);
+    // Can create a makefile to run these individually
+    //algorithm.insertionSort(array);
+    algorithm.quickSort(array);
+
     System.out.println("Printing sorted array: "); 
+
     for (int element: array) {
       System.out.print(element + " "); 
     }
-    System.out.println("");
+
+    System.out.println();
   }
 
 }
