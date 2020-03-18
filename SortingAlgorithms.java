@@ -1,5 +1,6 @@
 public class SortingAlgorithms {
 
+  //---------------------------------          INSERTION SORT           ---------------------------------//
   /**
    * INSERTION SORT
    * @param array
@@ -20,6 +21,8 @@ public class SortingAlgorithms {
   }
   
 
+  //---------------------------------             QUICK SORT              ---------------------------------//
+  //--------------------------------- NEED TO GET WORKING WITH DIFF PIVOT ---------------------------------//
   /**
    * Function to call quicksort using simple array
    * Could leave out but for sake of usability we'll use this
@@ -74,7 +77,7 @@ public class SortingAlgorithms {
 
     return array;
   }
-
+  
 
   /**
    * MAIN
