@@ -23,59 +23,79 @@ public class SortingAlgorithms {
 
   //---------------------------------             QUICK SORT              ---------------------------------//
   //--------------------------------- NEED TO GET WORKING WITH DIFF PIVOT ---------------------------------//
+  
+  private int input[]; // used as a temp to hold the array that was passed to quickSort
+  private int length;
+
   /**
    * Function to call quicksort using simple array
    * Could leave out but for sake of usability we'll use this
    * @param array
    */
-  void quickSort(int[] array) {
-    quickSort(array, 0, array.length - 1);
+  public void quickSort(int[] numbers) {
+
+      if (numbers == null || numbers.length == 0) {
+          return;
+      }
+      this.input = numbers;
+      length = numbers.length;
+      quickSort(0, length - 1);
   }
 
   /**
-   * Actual QuickSort (recursive) function 
-   * From Gayle Laakmann McDowell on Hackerrank
-   * @param array
-   * @param left
-   * @param right
+   * Recursive QuickSort function
+   * From https://javarevisited.blogspot.com/2014/08/quicksort-sorting-algorithm-in-java-in-place-example.html 
+   * Includes partition (can clean up to have in separate function)
+   * @param low
+   * @param high
    */
-  void quickSort(int[] array, int left, int right){
-    if(left >= right){ // we don't need to do anything in this case so return
-      return;
-    }
-    int index = partition(array, left, right); // get dividing point between left and right
-    quickSort(array, left, index-1); // sort left side
-    quickSort(array, index, right);  // sort right side
+  private void quickSort(int low, int high) {
+      int i = low;
+      int j = high;
+
+      // best way to get pivot as middle index
+      // mathematically equivalent to (low + high) / 2 
+      // but immune to overflow as "right > left"
+      int pivot = input[low + (high - low) / 2]; 
+
+      // Divide into two arrays i.e PARTITION takes place in this while loop
+      while (i <= j) { // while left and right have not yet crossed paths
+          /**
+           * In each iteration, 
+           * identify a number from left (lower) side which is greater than the pivot value
+           * identify a number from right (higher) side which is less than the pivot value.
+           * When search is complete, we can swap both numbers.
+           */
+          while (input[i] < pivot) { // while the element is in the correct place compared to the pivot
+              i++;
+          }
+          while (input[j] > pivot) { // while the element is in the correct place compared to the pivot
+              j--; 
+          }
+
+          // if left is less than right they need to be swapped. 
+          // i.e check the low pointer has not gone past the right pointer
+          if (i <= j) { 
+              swap(i, j);
+              // move index to next position on both sides
+              i++;
+              j--;
+          }
+      }
+
+      // calls quickSort() method recursively
+      if (low < j) {
+          quickSort(low, j);
+      }
+      if (i < high) {
+          quickSort(i, high);
+      }
   }
 
-  int partition(int[] array, int left, int right){
-    int pivot = array[(left+right)/2]; // median as pivot method
-    while(left <= right){ // while the left index and right index have not crossed paths
-      while(array[left] < pivot) { // while the element is in the right place compared to the pivot 
-        left++;
-      }
-
-      while(array[right] > pivot){
-        right--;
-      }
-
-      // if left is less than right they need to be swapped. We check if it's <= 
-      // as if they are equal the left and right pointers still need to be incremented so that the correct partition is returned
-      if(left <= right){ 
-        swap(array, left, right);
-        left++;
-        right--;
-      }
-    }
-    return left;
-  }
-
-  int[] swap(int[] array, int left, int right){
-    int temp = array[left];
-    array[left] = array[right];
-    array[right] = temp;
-
-    return array;
+  private void swap(int i, int j) {
+      int temp = input[i];
+      input[i] = input[j];
+      input[j] = temp;
   }
 
   //---------------------------------             MAIN              ---------------------------------//
