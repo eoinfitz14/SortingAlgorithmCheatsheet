@@ -100,6 +100,10 @@ public class SortingAlgorithms {
 
   //---------------------------------        SELECTION SORT         ---------------------------------//
 
+  /**
+   * Example from https://www.geeksforgeeks.org/selection-sort/
+   * @param array
+   */
   void selectionSort(int array[]) 
     { 
         int n = array.length; 
