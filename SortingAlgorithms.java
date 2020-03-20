@@ -77,14 +77,14 @@ public class SortingAlgorithms {
 
     return array;
   }
-  
 
+  //---------------------------------             MAIN              ---------------------------------//
   /**
    * MAIN
    * @param args
    */
   public static void main(String[] args){
-    int[] array = {4, 5, 2, 7, 0, 1, 3, 7, 5, 2, 35, 233, 1,2 ,2,4,3,2,5,6,6,8,6,9,3,2,5,6,7,8,9,84,2,6,7};
+    int[] array = {4,5,2,7,0,1,3,7,5,2,35,233,1,2,2,4,3,2,5,6,6,8,6,9,3,2,5,6,7,8,9,84,2,6,7};
 
     System.out.println("Printing initial array: "); 
 
@@ -97,7 +97,7 @@ public class SortingAlgorithms {
     System.out.println();
 
     // Can create a makefile to run these individually
-    //algorithm.insertionSort(array);
+    // algorithm.insertionSort(array);
     algorithm.quickSort(array);
 
     System.out.println("Printing sorted array: "); 
