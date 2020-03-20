@@ -1,5 +1,22 @@
 public class SortingAlgorithms {
 
+
+  //---------------------------------             HELPERS               ---------------------------------//
+  
+  // used in selection sort
+  private void swap(int[] array, int i, int j) {
+    int temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+
+  // used in quicksort where input[] is global
+  private void swap(int i, int j) {
+    int temp = input[i];
+    input[i] = input[j];
+    input[j] = temp;
+  }
+
   //---------------------------------          INSERTION SORT           ---------------------------------//
   /**
    * INSERTION SORT
@@ -92,12 +109,6 @@ public class SortingAlgorithms {
       }
   }
 
-  private void swap(int i, int j) {
-      int temp = input[i];
-      input[i] = input[j];
-      input[j] = temp;
-  }
-
   //---------------------------------        SELECTION SORT         ---------------------------------//
 
   /**
@@ -121,12 +132,6 @@ public class SortingAlgorithms {
             swap(array, minimumUnsortedElement, i); 
         } 
     }
-
-    private void swap(int[] array, int i, int j) {
-      int temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-  }
 
   //---------------------------------             MAIN              ---------------------------------//
   /**
