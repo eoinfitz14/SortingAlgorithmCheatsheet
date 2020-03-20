@@ -98,6 +98,32 @@ public class SortingAlgorithms {
       input[j] = temp;
   }
 
+  //---------------------------------        SELECTION SORT         ---------------------------------//
+
+  void selectionSort(int array[]) 
+    { 
+        int n = array.length; 
+        // One by one move the boundary of between the sorted (left) and unsorted (right) subarrays
+        for (int i = 0; i < n-1; i++) 
+        { 
+            // Find the minimum element in unsorted array 
+            int minimumUnsortedElement = i; 
+            for (int j = i+1; j < n; j++) {
+              if (array[j] < array[minimumUnsortedElement]) {
+                minimumUnsortedElement = j; 
+              }
+            }
+            // Swap the first element in the unsorted array with the lowest number found in it
+            swap(array, minimumUnsortedElement, i); 
+        } 
+    }
+
+    private void swap(int[] array, int i, int j) {
+      int temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+  }
+
   //---------------------------------             MAIN              ---------------------------------//
   /**
    * MAIN
@@ -114,7 +140,8 @@ public class SortingAlgorithms {
     System.out.println();
     // Can create a makefile to run these individually
     // algorithm.insertionSort(array);
-    algorithm.quickSort(array);
+    //algorithm.quickSort(array);
+    algorithm.selectionSort(array);
     System.out.println("Printing sorted array: "); 
     for (int element: array) {
       System.out.print(element + " "); 
