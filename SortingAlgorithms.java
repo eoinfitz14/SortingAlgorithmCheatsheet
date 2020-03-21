@@ -149,7 +149,7 @@ public class SortingAlgorithms {
     System.out.println();
     // Can create a makefile to run these individually
     // algorithm.insertionSort(array);
-    //algorithm.quickSort(array);
+    // algorithm.quickSort(array);
     algorithm.selectionSort(array);
     System.out.println("Printing sorted array: "); 
     for (int element: array) {
@@ -157,5 +157,4 @@ public class SortingAlgorithms {
     }
     System.out.println();
   }
-
 }
