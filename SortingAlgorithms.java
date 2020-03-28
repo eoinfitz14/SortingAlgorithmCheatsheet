@@ -154,7 +154,30 @@ public class SortingAlgorithms {
   public void mergeHalves(int array[], int temp[], int leftStart, int rightEnd) { // divide the array in half and merge each half
     int leftEnd = (leftStart + rightEnd) / 2;
     int rightStart = leftEnd + 1;
-    int size = rightEnd - leftStart + 1; // size of the array
+    int size = rightEnd - leftStart + 1; // size of the array 
+
+    int left = leftStart; // left starting index
+    int right = rightStart; // right starting index
+    int index = leftStart; // index in temp array where we're copying to
+
+    while(left <= leftEnd && right <= rightEnd) {
+      if(array[left] <= array[right]){ // go through the two halves, copying over the smaller element to the temp array
+        temp[index] = array[left];
+        left++;
+      }
+      else{
+        temp[index] = array[right];
+        right++;
+      }
+      index++;
+    }
+    // need to copy the remaining components over to temp
+    // Note: only one of these will have an effect as only one will actually have remaining elements to be copied
+    System.arraycopy(array, left, temp, index, leftEnd - left +1); 
+    System.arraycopy(array, right, temp, index, rightEnd - right +1);
+
+    // copying everything back
+    System.arraycopy(temp, leftStart, array, leftStart, size);
   }
 
 
@@ -175,7 +198,8 @@ public class SortingAlgorithms {
     // Can create a makefile to run these individually
     // algorithm.insertionSort(array);
     // algorithm.quickSort(array);
-    algorithm.selectionSort(array);
+    //algorithm.selectionSort(array);
+    algorithm.mergeSort(array);
     System.out.println("Printing sorted array: "); 
     for (int element: array) {
       System.out.print(element + " "); 
