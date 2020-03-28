@@ -1,5 +1,6 @@
 public class SortingAlgorithms {
 
+  // NEED TO SORT OUT PUBLIC/PRIVATE/STATIC VARIABLES
 
   //---------------------------------             HELPERS               ---------------------------------//
   
@@ -132,6 +133,30 @@ public class SortingAlgorithms {
             swap(array, minimumUnsortedElement, i); 
         } 
     }
+    
+  //---------------------------------          MERGE SORT           ---------------------------------//
+
+  public void mergeSort(int array[]) {
+    // new array is a temp array that is the same size as the original array
+    mergeSort(array, new int[array.length], 0, array.length - 1); 
+  }
+
+  public void mergeSort(int array[], int temp[], int leftStart, int rightEnd){
+    if (leftStart >= rightEnd){ // we're done here
+      return;
+    }
+    int middle = (leftStart + rightEnd) / 2;
+    mergeSort(array, temp, leftStart, middle);
+    mergeSort(array, temp, middle + 1, rightEnd);
+    mergeHalves(array, temp, leftStart, rightEnd);
+  }
+
+  public void mergeHalves(int array[], int temp[], int leftStart, int rightEnd) { // divide the array in half and merge each half
+    int leftEnd = (leftStart + rightEnd) / 2;
+    int rightStart = leftEnd + 1;
+    int size = rightEnd - leftStart + 1; // size of the array
+  }
+
 
   //---------------------------------             MAIN              ---------------------------------//
   /**
