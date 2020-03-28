@@ -7,4 +7,5 @@
 
 ![Quick Sort Demo](demo/Quicksort1.gif)
 
-![Merge Sort Demo](demo/mergeSort1.gif)(demo/mergeSort2.gif)
+![Merge Sort Demo](demo/mergeSort1.png)
+![](demo/mergeSort2.png)
