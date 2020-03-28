@@ -18,27 +18,6 @@ public class SortingAlgorithms {
     input[j] = temp;
   }
 
-  //---------------------------------          INSERTION SORT           ---------------------------------//
-  /**
-   * INSERTION SORT
-   * @param array
-   */
-  void insertionSort(int array[]){
-    int n = array.length;
-
-    // starting at 2nd number in the array (or first number in the unsorted/right part of the array)
-    for (int i = 1; i < n; i++) {  
-        int curr = array[i]; // first number in unsorted part
-        int j = i - 1; // last number in sorter part
-        while (j >= 0 && array[j] > curr) { // while the number still hasn't been sorted
-          array[j + 1] = array[j]; // first part of swap
-            j = j - 1; 
-        }
-        array[j + 1] = curr; // second part of swap
-    }
-  }
-  
-
   //---------------------------------             QUICK SORT              ---------------------------------//
   //--------------------------------- NEED TO GET WORKING WITH DIFF PIVOT ---------------------------------//
   
@@ -109,30 +88,6 @@ public class SortingAlgorithms {
           quickSort(i, high);
       }
   }
-
-  //---------------------------------        SELECTION SORT         ---------------------------------//
-
-  /**
-   * Example from https://www.geeksforgeeks.org/selection-sort/
-   * @param array
-   */
-  void selectionSort(int array[]) 
-    { 
-        int n = array.length; 
-        // One by one move the boundary of between the sorted (left) and unsorted (right) subarrays
-        for (int i = 0; i < n-1; i++) 
-        { 
-            // Find the minimum element in unsorted array 
-            int minimumUnsortedElement = i; 
-            for (int j = i+1; j < n; j++) {
-              if (array[j] < array[minimumUnsortedElement]) {
-                minimumUnsortedElement = j; 
-              }
-            }
-            // Swap the first element in the unsorted array with the lowest number found in it
-            swap(array, minimumUnsortedElement, i); 
-        } 
-    }
     
   //---------------------------------          MERGE SORT           ---------------------------------//
 
@@ -184,6 +139,49 @@ public class SortingAlgorithms {
     System.arraycopy(temp, leftStart, array, leftStart, size);
   }
 
+  //---------------------------------          INSERTION SORT           ---------------------------------//
+  /**
+   * INSERTION SORT
+   * @param array
+   */
+  void insertionSort(int array[]){
+    int n = array.length;
+
+    // starting at 2nd number in the array (or first number in the unsorted/right part of the array)
+    for (int i = 1; i < n; i++) {  
+        int curr = array[i]; // first number in unsorted part
+        int j = i - 1; // last number in sorter part
+        while (j >= 0 && array[j] > curr) { // while the number still hasn't been sorted
+          array[j + 1] = array[j]; // first part of swap
+            j = j - 1; 
+        }
+        array[j + 1] = curr; // second part of swap
+    }
+  }
+  
+  //---------------------------------        SELECTION SORT         ---------------------------------//
+
+  /**
+   * Example from https://www.geeksforgeeks.org/selection-sort/
+   * @param array
+   */
+  void selectionSort(int array[]) 
+    { 
+        int n = array.length; 
+        // One by one move the boundary of between the sorted (left) and unsorted (right) subarrays
+        for (int i = 0; i < n-1; i++) 
+        { 
+            // Find the minimum element in unsorted array 
+            int minimumUnsortedElement = i; 
+            for (int j = i+1; j < n; j++) {
+              if (array[j] < array[minimumUnsortedElement]) {
+                minimumUnsortedElement = j; 
+              }
+            }
+            // Swap the first element in the unsorted array with the lowest number found in it
+            swap(array, minimumUnsortedElement, i); 
+        } 
+    }
 
   //---------------------------------             MAIN              ---------------------------------//
   /**
@@ -199,11 +197,14 @@ public class SortingAlgorithms {
     }
     SortingAlgorithms algorithm = new SortingAlgorithms();
     System.out.println();
+
     // Can create a makefile to run these individually
-    // algorithm.insertionSort(array);
-    // algorithm.quickSort(array);
+    algorithm.quickSort(array);
+    //algorithm.mergeSort(array);
+    //algorithm.insertionSort(array);
     //algorithm.selectionSort(array);
-    algorithm.mergeSort(array);
+    
+
     System.out.println("Printing sorted array: "); 
     for (int element: array) {
       System.out.print(element + " "); 
