@@ -136,6 +136,10 @@ public class SortingAlgorithms {
     
   //---------------------------------          MERGE SORT           ---------------------------------//
 
+  /**
+   * Example from HackerRank's Tutorial with Gayle Laakmann McDowell
+   * @param array
+   */
   public void mergeSort(int array[]) {
     // new array is a temp array that is the same size as the original array
     mergeSort(array, new int[array.length], 0, array.length - 1); 
